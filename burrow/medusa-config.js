@@ -81,6 +81,7 @@ const projectConfig = {
   jwtSecret: process.env.JWT_SECRET,
   cookieSecret: process.env.COOKIE_SECRET,
   store_cors: STORE_CORS,
+  admin_cors: ADMIN_CORS,
   database_url: DATABASE_URL,
   database_extra: { ssl: { rejectUnauthorized: false } },
   admin_cors: ADMIN_CORS,
