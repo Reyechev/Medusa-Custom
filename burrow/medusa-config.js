@@ -45,11 +45,10 @@ const REDIS_PASSWORD=process.env.REDIS_PASSWORD
 const REDIS_HOST=process.env.REDIS_HOST
 const REDIS_PORT=process.env.REDIS_PORT
 
-const DATABASE_URL = 
+const REDIS_URL = 
   `rediss://${REDIS_USERNAME}:${REDIS_PASSWORD}` + 
-  `@${REDIS_HOST}:${REDIS_PORT}`
+  `@${REDIS_HOST}:${REDIS_PORT}` || "redis://localhost:6379";
 
-const REDIS_URL = process.env.REDIS_URL || "redis://localhost:6379";
 
 const plugins = [
   `medusa-fulfillment-manual`,
