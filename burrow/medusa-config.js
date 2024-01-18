@@ -47,7 +47,7 @@ const REDIS_PORT=process.env.REDIS_PORT
 
 const REDIS_URL = 
   `rediss://${REDIS_USERNAME}:${REDIS_PASSWORD}` + 
-  `@${REDIS_HOST}:${REDIS_PORT}` || "redis://localhost:6379";
+  `@${REDIS_HOST}:${REDIS_PORT}`
 
 
 const plugins = [
