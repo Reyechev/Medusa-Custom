@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  db:
+    image: postgres
+    volumes:
+      - postgres-db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=medusa-ebwG
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=mysecretpassword
+    ports:
+      - 5432:5432
+  redis:
+    image: redis/redis-stack
+    volumes:
+      - ./test-data/:/data
+    ports:
+      - 6379:6379
+volumes:
+  postgres-db:
