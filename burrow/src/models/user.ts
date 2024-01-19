@@ -1,7 +1,5 @@
-import { Column, Entity, Index, JoinColumn, ManyToOne } from "typeorm"
-import {
-  User as MedusaUser,
-} from "@medusajs/medusa"
+import { Column, Entity, Index, JoinColumn, ManyToOne } from "typeorm";
+import { User as MedusaUser } from "@medusajs/medusa";
 import { Store } from "./store";
 
 @Entity()
@@ -11,6 +9,6 @@ export class User extends MedusaUser {
   store_id?: string;
 
   @ManyToOne(() => Store, (store) => store.members)
-  @JoinColumn({ name: 'store_id', referencedColumnName: 'id' })
+  @JoinColumn({ name: "store_id", referencedColumnName: "id" })
   store?: Store;
 }

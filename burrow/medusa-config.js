@@ -29,26 +29,25 @@ const ADMIN_CORS =
 const STORE_CORS = process.env.STORE_CORS || "http://localhost:8000";
 
 // POSTGRESQL
-const DB_USERNAME = process.env.DB_USERNAME
-const DB_PASSWORD = process.env.DB_PASSWORD
-const DB_HOST = process.env.DB_HOST
-const DB_PORT = process.env.DB_PORT
-const DB_DATABASE = process.env.DB_DATABASE
+const DB_USERNAME = process.env.DB_USERNAME;
+const DB_PASSWORD = process.env.DB_PASSWORD;
+const DB_HOST = process.env.DB_HOST;
+const DB_PORT = process.env.DB_PORT;
+const DB_DATABASE = process.env.DB_DATABASE;
 
-const DATABASE_URL = 
-  `postgres://${DB_USERNAME}:${DB_PASSWORD}` + 
-  `@${DB_HOST}:${DB_PORT}/${DB_DATABASE}`
+const DATABASE_URL =
+  `postgres://${DB_USERNAME}:${DB_PASSWORD}` +
+  `@${DB_HOST}:${DB_PORT}/${DB_DATABASE}`;
 
 // REDIS
-const REDIS_USERNAME=process.env.REDIS_USERNAME
-const REDIS_PASSWORD=process.env.REDIS_PASSWORD
-const REDIS_HOST=process.env.REDIS_HOST
-const REDIS_PORT=process.env.REDIS_PORT
+const REDIS_USERNAME = process.env.REDIS_USERNAME;
+const REDIS_PASSWORD = process.env.REDIS_PASSWORD;
+const REDIS_HOST = process.env.REDIS_HOST;
+const REDIS_PORT = process.env.REDIS_PORT;
 
-const REDIS_URL = 
-  `rediss://${REDIS_USERNAME}:${REDIS_PASSWORD}` + 
-  `@${REDIS_HOST}:${REDIS_PORT}`
-
+const REDIS_URL =
+  `redis://${REDIS_USERNAME}:${REDIS_PASSWORD}` +
+  `@${REDIS_HOST}:${REDIS_PORT}`;
 
 const plugins = [
   `medusa-fulfillment-manual`,
@@ -75,14 +74,14 @@ const modules = {
   eventBus: {
     resolve: "@medusajs/event-bus-redis",
     options: {
-      redisUrl: REDIS_URL
-    }
+      redisUrl: REDIS_URL,
+    },
   },
   cacheService: {
     resolve: "@medusajs/cache-redis",
     options: {
-      redisUrl: REDIS_URL
-    }
+      redisUrl: REDIS_URL,
+    },
   },
 };
 
@@ -93,9 +92,12 @@ const projectConfig = {
   store_cors: STORE_CORS,
   admin_cors: ADMIN_CORS,
   database_url: DATABASE_URL,
-  database_extra: { ssl: { rejectUnauthorized: false } },
+  database_extra:
+    process.env.NODE_ENV == "production"
+      ? { ssl: { rejectUnauthorized: false } }
+      : undefined,
   // Uncomment the following lines to enable REDIS
-  redis_url: REDIS_URL
+  redis_url: REDIS_URL,
 };
 
 /** @type {import('@medusajs/medusa').ConfigModule} */
