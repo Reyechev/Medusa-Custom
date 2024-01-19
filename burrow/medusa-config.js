@@ -46,7 +46,8 @@ const REDIS_HOST = process.env.REDIS_HOST;
 const REDIS_PORT = process.env.REDIS_PORT;
 
 const REDIS_URL =
-  `redis://${REDIS_USERNAME}:${REDIS_PASSWORD}` +
+  `${process.env.NODE_ENV == "development" ? "redis" : "rediss"}` +
+  `://${REDIS_USERNAME}:${REDIS_PASSWORD}` +
   `@${REDIS_HOST}:${REDIS_PORT}`;
 
 const plugins = [
@@ -93,9 +94,9 @@ const projectConfig = {
   admin_cors: ADMIN_CORS,
   database_url: DATABASE_URL,
   database_extra:
-    process.env.NODE_ENV == "production"
-      ? { ssl: { rejectUnauthorized: false } }
-      : undefined,
+    process.env.NODE_ENV == "development"
+      ? undefined
+      : { ssl: { rejectUnauthorized: false } },
   // Uncomment the following lines to enable REDIS
   redis_url: REDIS_URL,
 };
