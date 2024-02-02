@@ -37,7 +37,7 @@ const DB_DATABASE = process.env.DB_DATABASE;
 
 const DATABASE_URL =
   `postgres://${DB_USERNAME}:${DB_PASSWORD}` +
-  `@${DB_HOST}:${DB_PORT}/${DB_DATABASE}?sslmode=require`;
+  `@${DB_HOST}:${DB_PORT}/${DB_DATABASE}`;
 
 // REDIS
 const REDIS_USERNAME = process.env.REDIS_USERNAME;
@@ -97,6 +97,8 @@ const projectConfig = {
     process.env.NODE_ENV == "development"
       ? undefined
       : { ssl: { rejectUnauthorized: false } },
+  // Uncomment the following lines to enable REDIS
+  redis_url: REDIS_URL,
 };
 
 /** @type {import('@medusajs/medusa').ConfigModule} */
