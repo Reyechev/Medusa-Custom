@@ -12,6 +12,8 @@ switch (process.env.NODE_ENV) {
     ENV_FILE_NAME = ".env.test";
     break;
   case "development":
+    ENV_FILE_NAME = ".env.development";
+    break;
   default:
     ENV_FILE_NAME = ".env";
     break;
@@ -85,7 +87,7 @@ const modules = {
     },
   },
 };
-
+console.log('Sotrecores', STORE_CORS)
 /** @type {import('@medusajs/medusa').ConfigModule["projectConfig"]} */
 const projectConfig = {
   jwtSecret: process.env.JWT_SECRET,
